@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Status Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #status {
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Computer Status Checker</h1>
+        <p id="status">Checking...</p>
+    </div>
+    <script>
+        // JavaScript code to check computer status
+        document.addEventListener("DOMContentLoaded", function() {
+            var statusElement = document.getElementById("status");
+    
+            // Function to check computer status
+            function checkComputerStatus() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "http://localhost:5000/check-computer-status", true);
+    
+                xhr.onload = function () {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        statusElement.innerText = "Computer is ON";
+                        statusElement.style.color = "green";
+                    } else {
+                        statusElement.innerText = "Computer is OFF";
+                        statusElement.style.color = "red";
+                    }
+                };
+    
+                xhr.onerror = function () {
+                    statusElement.innerText = "Error checking computer status";
+                    statusElement.style.color = "orange";
+                };
+    
+                xhr.send();
+            }
+    
+            // Call the function to check computer status
+            checkComputerStatus();
+        });
+    </script>
+</body>
+</html>
