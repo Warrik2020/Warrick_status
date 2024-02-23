@@ -40,7 +40,7 @@
             // Function to check computer status
             function checkComputerStatus() {
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "http://localhost:5000/check-computer-status", true);
+                xhr.open("GET", "http://192.168.1.153:5000/check-computer-status", true);
     
                 xhr.onload = function () {
                     if (xhr.status >= 200 && xhr.status < 300) {
